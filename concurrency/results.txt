@@ -1,0 +1,2 @@
+Function 'sum_with_booster' executed in 0.2770s
+Function 'sum_without_booster' executed in 17.1208s
