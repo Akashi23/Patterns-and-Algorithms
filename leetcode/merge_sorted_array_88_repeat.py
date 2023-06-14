@@ -6,32 +6,22 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        if not nums1:
-            nums1 = nums2
-            return nums1
 
-        if not nums2:
-            return nums1
-
-        if nums1[0] > nums2[0]:
-            nums1.insert(0, nums2[0])
-            nums1.pop()
-            nums2.pop(0)
-
-        for i in range(m+n):
-            if not nums2:
-                break
-            if nums1[i] == 0 and m == 0:
-                nums1[i] = nums2.pop(0)
-            if nums1[i] == 0 and i >= m and m > n:
-                nums1[i] = nums2.pop(0)
-            if nums1[i] == 0 and i >= n and m < n:
-                nums1[i] = nums2.pop(0)
-            if i < m+n-1:
-                if nums1[i] <= nums2[0] <= nums1[i+1]:
-                    nums1.insert(i+1, nums2[0])
-                    nums1.pop()
-                    nums2.pop(0)
+        # Initialize nums1's index
+        i = m - 1
+        # Initialize nums2's index
+        j = n - 1
+        # Initialize a variable k to store the last index of the 1st array...
+        k = m + n - 1
+        while j >= 0:
+            if i >= 0 and nums1[i] > nums2[j]:
+                nums1[k] = nums1[i]
+                k -= 1
+                i -= 1
+            else:
+                nums1[k] = nums2[j]
+                k -= 1
+                j -= 1
 
         return nums1
 
