@@ -16,7 +16,6 @@ class RecentCounter:
             self.request_count -= 1
 
         self.request_count += 1
-        print(self.recent_requests)
         return self.request_count
 
 # Your RecentCounter object will be instantiated and called as such:
