@@ -26,3 +26,26 @@ abac	aba
 Ввод	Вывод
 yandex	-1
 """
+
+def solution(s: str):
+    min_pol = ''
+    for i in range(len(s)):
+        for j in range(len(s)):
+            if isPolindrom(s[i:j]) and len(s[i:j]) > 1:
+                if min_pol == '' or s[i:j] < min_pol:
+                    min_pol = s[i:j]
+
+    return -1 if min_pol == '' else min_pol
+
+def isPolindrom(s: str):
+    return s == s[::-1]
+
+
+if __name__ == '__main__':
+    s = 'abac'
+    print(solution(s))
+    assert solution(s) == 'aba'
+
+    s = 'yandex'
+    print(solution(s))
+    assert solution(s) == -1
