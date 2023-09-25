@@ -1,30 +1,27 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        
+        length = len(s)
 
+        dp = [[False] * length for _ in range(length)]
+        ans = [0, 0]
 
+        for i in range(length):
+            dp[i][i] = True
 
+        for i in range(length - 1):
+            if s[i] == s[i + 1]:
+                dp[i][i + 1] = True
+                ans = [i, i + 1]
 
+        for diff in range(2, length):
+            for i in range(length - diff):
+                j = i + diff
+                if s[i] == s[j] and dp[i + 1][j - 1]:
+                    dp[i][j] = True
+                    ans = [i, j]
 
-class Solution2:
-    def longestPalindrome(self, s: str) -> str:
-        long_polindrome = [[x] for x in s]
-        for index, value in enumerate(s):
-            for jndex in range(len(s) // 2 + 1):
-                if(self.polindrome(s[index - jndex:index + jndex + 1]) and index - jndex > -1):
-                    long_polindrome[index].append(s[index - jndex:index + jndex + 1])
-                if(self.polindrome(s[index - jndex:index + jndex + 2]) and index - jndex > -1):
-                    long_polindrome[index].append(s[index - jndex:index + jndex + 2])
-                    
-        return self.find_max_polindrome(long_polindrome)
-        
-    def polindrome(self, s: str) -> bool:
-        return s == s[::-1]
-    
-    def find_max_polindrome(self, lists):
-        polindromes = [x.pop() for x in lists]
-        return max(polindromes, key=len)
-    
+        return s[ans[0] : ans[1] + 1]
+
 
 solution = Solution()
 answer = solution.longestPalindrome("babad")
