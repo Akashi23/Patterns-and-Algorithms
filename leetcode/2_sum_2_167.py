@@ -1,3 +1,5 @@
+import functools
+import operator
 from typing import List
 
 
@@ -6,9 +8,9 @@ class Solution:
         d = {}
         for i in range(len(numbers)):
             if numbers[i] in d:
-                return [d[numbers[i]], i+1]
+                return [d[numbers[i]], i + 1]
             else:
-                d[target - numbers[i]] = i+1
+                d[target - numbers[i]] = i + 1
 
 
 solution = Solution()
